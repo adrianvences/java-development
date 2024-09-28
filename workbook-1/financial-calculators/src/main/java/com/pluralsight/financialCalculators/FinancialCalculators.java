@@ -25,9 +25,27 @@ public class FinancialCalculators {
         return new double[]{monthlyPayment, totalInterestPaid};
 
     }
-
+    /*
+     *calculates future value of deposit
+     * displays future value and interest earned
+     * takes a deposit ,interest rate and years as args
+     * the numbers should take into account daily compounding
+     * I ran the numbers on https://www.cit.com/cit-bank/resources/calculators/certificate-of-deposit-calculator, and they match with my calculator***
+     *\
+     */
     public static double[] futureValueCalculator(double deposit, double annualRate, int loanLength){
-        return new double[]{1,1,1};
+        // converts annual rate into decimal
+        double r = annualRate / 100.0;
+        // compound periods = daily = 365
+        int n = 365;
+
+
+        // FV future value formula
+        double futureValue = deposit * Math.pow((1 + (r/n)), n * loanLength );
+
+        // Calc interest
+        double totalInterest = futureValue - deposit;
+        return new double[]{futureValue,totalInterest};
     }
 
     public static double[] presentValueCalculator(double deposit, double annualRate, int loanLength){
@@ -73,7 +91,24 @@ public class FinancialCalculators {
 
                 // Future Value Calculator
                 case "b":
-                    System.out.println("second calculator");
+                    Scanner userFVLInput = new Scanner(System.in);
+
+                    //read the input number
+                    System.out.print("Enter the deposit amount: ");
+                    double deposit = userFVLInput.nextDouble();
+
+                    System.out.print("Enter the annual interest rate (in %): ");
+                    double annualRateFVL = userFVLInput.nextDouble();
+
+                    System.out.print("Enter the loan length (in years): ");
+                    int loanLengthFVL = userFVLInput.nextInt();
+
+                    //calculations
+                    double[] usersFutureValue = futureValueCalculator(deposit,annualRateFVL,loanLengthFVL);
+                    System.out.println("The future value and total interest earned would be: ");
+                    System.out.printf("Future Value: $%.2f%n", usersFutureValue[0]);
+                    System.out.printf("Future Value: $%.2f%n", usersFutureValue[1]);
+
                     break;
 
                 // Present Value Calculator
