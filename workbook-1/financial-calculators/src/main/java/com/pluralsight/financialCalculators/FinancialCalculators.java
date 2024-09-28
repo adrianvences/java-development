@@ -1,6 +1,6 @@
 package com.pluralsight.financialCalculators;
 
-import java.sql.SQLOutput;
+
 import java.util.Scanner;
 
 public class FinancialCalculators {
@@ -48,13 +48,27 @@ public class FinancialCalculators {
         return new double[]{futureValue,totalInterest};
     }
 
-    public static double[] presentValueCalculator(double deposit, double annualRate, int loanLength){
-        return new double[]{2,2,2};
+    public static double presentValueCalculator(double payout, double annualRate, int loanLength){
+        double monthlyRate = (annualRate / 100) / 12; // assuming monthly interest rate
+        int totalPayments = loanLength * 12; // total num of payments
+
+        //present value formula
+        return payout * (1 - Math.pow(1 + monthlyRate,-totalPayments)) / monthlyRate;
+
+
     }
 
 
     public static void main(String[] args) {
         // scanner to detect users input
+        System.out.println("""
+                  Welcome to the
+                  ___ _                   _      _    ___      _         _      _          \s
+                 | __(_)_ _  __ _ _ _  __(_)__ _| |  / __|__ _| |__ _  _| |__ _| |_ ___ _ _\s
+                 | _|| | ' \\/ _` | ' \\/ _| / _` | | | (__/ _` | / _| || | / _` |  _/ _ \\ '_|
+                 |_| |_|_||_\\__,_|_||_\\__|_\\__,_|_|  \\___\\__,_|_\\__|\\_,_|_\\__,_|\\__\\___/_| \s
+                                                                                           \s
+                """);
         Scanner calcChoiceInput = new Scanner(System.in);
 
 
@@ -74,7 +88,8 @@ public class FinancialCalculators {
                     System.out.print("Enter the principal amount: ");
                     double principal = userInput.nextDouble();
 
-                    System.out.print("Enter the annual interest rate (in %): ");
+                    // will need to read as a string and parse percent to prevent error.
+                    System.out.print("Enter the annual interest rate with out a '%': ");
                     double annualRate = userInput.nextDouble();
 
                     System.out.print("Enter the loan length (in years): ");
@@ -97,7 +112,7 @@ public class FinancialCalculators {
                     System.out.print("Enter the deposit amount: ");
                     double deposit = userFVLInput.nextDouble();
 
-                    System.out.print("Enter the annual interest rate (in %): ");
+                    System.out.print("Enter the annual interest rate with out a '%': ");
                     double annualRateFVL = userFVLInput.nextDouble();
 
                     System.out.print("Enter the loan length (in years): ");
@@ -113,7 +128,26 @@ public class FinancialCalculators {
 
                 // Present Value Calculator
                 case "c":
-                    System.out.println("third calculator");
+                    //reader
+                    Scanner userPVCInput = new Scanner(System.in);
+
+                    //read the input
+                    System.out.print("Enter monthly payout: ");
+                    double payout = userPVCInput.nextDouble();
+
+                    System.out.print("Enter the annual interest rate with out a '%': ");
+                    double annualRatePVC = userPVCInput.nextDouble();
+
+                    System.out.print("Enter the loan length (in years): ");
+                    int loanLengthPVC = userPVCInput.nextInt();
+
+                    //calculation
+
+                    double presentValue = presentValueCalculator(payout,annualRatePVC,loanLengthPVC);
+
+                    System.out.printf(" To fund an annuity that pays $%.2f monthly for %d years and earns an expected interest rate of %.2f%% interest, you would need to invest $%.2f today.%n",
+                            payout,loanLengthPVC,annualRatePVC,presentValue);
+
                     break;
 
                 case "d":
