@@ -167,7 +167,7 @@ public class FinancialCalculators {
                 break;
             }
         }
-        // Close the scanner
+        // Close the scanner ////
         calcChoiceInput.close();
 
     }
