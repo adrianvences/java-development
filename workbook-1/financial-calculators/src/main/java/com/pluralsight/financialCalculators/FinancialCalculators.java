@@ -45,9 +45,16 @@ public class FinancialCalculators {
 
         // Calc interest
         double totalInterest = futureValue - deposit;
+
+        // returns array with values
         return new double[]{futureValue,totalInterest};
     }
 
+    /*
+     * Used to calculate how much money you'll need to receive a certain payout every month
+     * input payout , annual rate, loan length
+     *
+     */
     public static double presentValueCalculator(double payout, double annualRate, int loanLength){
         double monthlyRate = (annualRate / 100) / 12; // assuming monthly interest rate
         int totalPayments = loanLength * 12; // total num of payments
@@ -132,7 +139,7 @@ public class FinancialCalculators {
                     Scanner userPVCInput = new Scanner(System.in);
 
                     //read the input
-                    System.out.print("Enter monthly payout: ");
+                    System.out.print("Enter desired monthly payout: ");
                     double payout = userPVCInput.nextDouble();
 
                     System.out.print("Enter the annual interest rate with out a '%': ");
@@ -154,6 +161,7 @@ public class FinancialCalculators {
                     System.out.println("Good Bye!");
                     calcChoiceInput.close();
                     return;
+
                 default:
                     System.out.println("Invalid input");
 
