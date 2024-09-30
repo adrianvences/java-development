@@ -89,18 +89,17 @@ public class FinancialCalculators {
 
                 // Mortgage Calculator
                 case "a":
-                    Scanner userInput = new Scanner(System.in);
 
                     //read the input number
                     System.out.print("Enter the principal amount: ");
-                    double principal = userInput.nextDouble();
+                    double principal = calcChoiceInput.nextDouble();
 
                     // will need to read as a string and parse percent to prevent error.
                     System.out.print("Enter the annual interest rate with out a '%': ");
-                    double annualRate = userInput.nextDouble();
+                    double annualRate = calcChoiceInput.nextDouble();
 
                     System.out.print("Enter the loan length (in years): ");
-                    int loanLength = userInput.nextInt();
+                    int loanLength = calcChoiceInput.nextInt();
 
                     //calculations
                     double[] usersMonthlyPaymentAndInterest = mortgageCalculator(principal, annualRate, loanLength);
@@ -113,17 +112,17 @@ public class FinancialCalculators {
 
                 // Future Value Calculator
                 case "b":
-                    Scanner userFVLInput = new Scanner(System.in);
+
 
                     //read the input number
                     System.out.print("Enter the deposit amount: ");
-                    double deposit = userFVLInput.nextDouble();
+                    double deposit = calcChoiceInput.nextDouble();
 
                     System.out.print("Enter the annual interest rate with out a '%': ");
-                    double annualRateFVL = userFVLInput.nextDouble();
+                    double annualRateFVL = calcChoiceInput.nextDouble();
 
                     System.out.print("Enter the loan length (in years): ");
-                    int loanLengthFVL = userFVLInput.nextInt();
+                    int loanLengthFVL = calcChoiceInput.nextInt();
 
                     //calculations
                     double[] usersFutureValue = futureValueCalculator(deposit,annualRateFVL,loanLengthFVL);
@@ -135,18 +134,17 @@ public class FinancialCalculators {
 
                 // Present Value Calculator
                 case "c":
-                    //reader
-                    Scanner userPVCInput = new Scanner(System.in);
+
 
                     //read the input
                     System.out.print("Enter desired monthly payout: ");
-                    double payout = userPVCInput.nextDouble();
+                    double payout = calcChoiceInput.nextDouble();
 
                     System.out.print("Enter the annual interest rate with out a '%': ");
-                    double annualRatePVC = userPVCInput.nextDouble();
+                    double annualRatePVC = calcChoiceInput.nextDouble();
 
                     System.out.print("Enter the loan length (in years): ");
-                    int loanLengthPVC = userPVCInput.nextInt();
+                    int loanLengthPVC = calcChoiceInput.nextInt();
 
                     //calculation
 
